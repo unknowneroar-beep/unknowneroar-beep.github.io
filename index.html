@@ -82,9 +82,7 @@
       color: var(--muted);
     }
 
-    button, a {
-      font: inherit;
-    }
+    button, a { font: inherit; }
 
     button:focus-visible, a:focus-visible {
       outline: 2px solid var(--accent);
@@ -100,9 +98,7 @@
       cursor: pointer;
     }
 
-    .btn:hover, .tile:hover {
-      border-color: var(--accent);
-    }
+    .btn:hover, .tile:hover { border-color: var(--accent); }
 
     .shell {
       display: grid;
@@ -130,22 +126,15 @@
       font-weight: 500;
     }
 
-    .index a:hover {
-      background: var(--surface);
-      color: var(--ink);
-    }
+    .index a:hover { background: var(--surface); color: var(--ink); }
 
     .index a[aria-current="page"] {
       background: var(--accent);
       color: var(--accent-ink);
     }
 
-    .index .n {
-      font: 12px var(--font-mono);
-    }
-
+    .index .n { font: 12px var(--font-mono); }
     main { min-width: 0; }
-
     .head { margin-bottom: 14px; }
 
     .head .left {
@@ -155,15 +144,8 @@
       flex-wrap: wrap;
     }
 
-    h2 {
-      margin: 0;
-      font: 600 24px var(--font-display);
-    }
-
-    .stat {
-      color: var(--muted);
-      font: 13px var(--font-mono);
-    }
+    h2 { margin: 0; font: 600 24px var(--font-display); }
+    .stat { color: var(--muted); font: 13px var(--font-mono); }
 
     .wall {
       display: grid;
@@ -171,10 +153,7 @@
       gap: 14px;
     }
 
-    .shot {
-      min-width: 0;
-      margin: 0;
-    }
+    .shot { min-width: 0; margin: 0; }
 
     .tile {
       display: block;
@@ -235,19 +214,11 @@
       background: var(--bg);
     }
 
-    .close-row {
-      padding: 10px 12px;
-      text-align: right;
-    }
+    .close-row { padding: 10px 12px; text-align: right; }
 
     @media (max-width: 760px) {
       body { padding-block: 20px 36px; }
-
-      .shell {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
+      .shell { grid-template-columns: 1fr; gap: 20px; }
       .index {
         position: static;
         flex-direction: row;
@@ -255,13 +226,11 @@
         gap: 6px;
         padding-bottom: 4px;
       }
-
       .index a {
         flex: 0 0 auto;
         border: 1px solid var(--line);
         background: var(--surface);
       }
-
       .wall {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 10px;
@@ -304,36 +273,36 @@
       { id: "others", label: "Other's" }
     ];
 
+    // Image files are in the repository root, not in subfolders.
     var PHOTOS = [
-      { id: "project-1", section: "projects", src: "images/project1.jpg" },
+      { id: "project-1", section: "projects", src: "./22.png" },
 
-      { id: "activity-1", section: "activities", src: "ruler/12.jpg" },
-      { id: "activity-2", section: "activities", src: "ruler/13.jpg" },
+      { id: "activity-1", section: "activities", src: "./12.jpg" },
+      { id: "activity-2", section: "activities", src: "./13.jpg" },
 
-      { id: "exercise-1", section: "exercises", src: "images/exercise1.jpg" },
+      { id: "exercise-1", section: "exercises", src: "./222.png" },
 
-      { id: "exam-1", section: "exams", src: "images/exam1.jpg" },
-      { id: "quiz-1", section: "quizzes", src: "images/quiz1.jpg" },
+      { id: "exam-1", section: "exams", src: "./2222.png" },
+      { id: "quiz-1", section: "quizzes", src: "./22222.png" },
 
-      { id: "notebook-1", section: "notebooks", src: "1.jpg" },
-      { id: "notebook-2", section: "notebooks", src: "2.jpg" },
-      { id: "notebook-3", section: "notebooks", src: "3.jpg" },
-      { id: "notebook-4", section: "notebooks", src: "4.jpg" },
-      { id: "notebook-5", section: "notebooks", src: "5.jpg" },
-      { id: "notebook-6", section: "notebooks", src: "6.jpg" },
-      { id: "notebook-8", section: "notebooks", src: "8.jpg" },
-      { id: "notebook-9", section: "notebooks", src: "9.jpg" },
-      { id: "notebook-10", section: "notebooks", src: "10.jpg" },
-      { id: "notebook-11", section: "notebooks", src: "11.jpg" },
-      { id: "notebook-15", section: "notebooks", src: "15.jpg" },
+      { id: "notebook-1", section: "notebooks", src: "./1.jpg" },
+      { id: "notebook-2", section: "notebooks", src: "./2.jpg" },
+      { id: "notebook-3", section: "notebooks", src: "./3.jpg" },
+      { id: "notebook-4", section: "notebooks", src: "./4.jpg" },
+      { id: "notebook-5", section: "notebooks", src: "./5.jpg" },
+      { id: "notebook-6", section: "notebooks", src: "./6.jpg" },
+      { id: "notebook-7", section: "notebooks", src: "./7.jpg" },
+      { id: "notebook-8", section: "notebooks", src: "./8.jpg" },
+      { id: "notebook-9", section: "notebooks", src: "./9.jpg" },
+      { id: "notebook-10", section: "notebooks", src: "./10.jpg" },
+      { id: "notebook-11", section: "notebooks", src: "./11.jpg" },
+      { id: "notebook-14", section: "notebooks", src: "./14.jpg" },
 
-      { id: "other-1", section: "others", src: "ruler/11111.jpeg" }
+      { id: "other-1", section: "others", src: "./11111.jpeg" },
+      { id: "other-2", section: "others", src: "./222222.png" }
     ];
 
-    var state = {
-      photos: PHOTOS,
-      active: "projects"
-    };
+    var state = { photos: PHOTOS, active: "projects" };
 
     function el(tag, className, text) {
       var node = document.createElement(tag);
@@ -342,37 +311,26 @@
       return node;
     }
 
-    function $(id) {
-      return document.getElementById(id);
-    }
+    function $(id) { return document.getElementById(id); }
 
     function sectionLabel(id) {
-      var section = SECTIONS.find(function (item) {
-        return item.id === id;
-      });
+      var section = SECTIONS.find(function (item) { return item.id === id; });
       return section ? section.label : id;
     }
 
     function photosInSection(id) {
-      return state.photos.filter(function (photo) {
-        return photo.section === id;
-      });
+      return state.photos.filter(function (photo) { return photo.section === id; });
     }
 
     function renderNav() {
       var nav = $("index");
       nav.textContent = "";
-
       SECTIONS.forEach(function (section) {
         var link = el("a");
         link.href = "#" + section.id;
         link.appendChild(el("span", null, section.label));
         link.appendChild(el("span", "n", String(photosInSection(section.id).length)));
-
-        if (section.id === state.active) {
-          link.setAttribute("aria-current", "page");
-        }
-
+        if (section.id === state.active) link.setAttribute("aria-current", "page");
         nav.appendChild(link);
       });
     }
@@ -380,18 +338,11 @@
     function renderMain() {
       var main = $("main");
       main.textContent = "";
-
       var photos = photosInSection(state.active);
       var head = el("div", "head");
       var left = el("div", "left");
-
       left.appendChild(el("h2", null, sectionLabel(state.active)));
-      left.appendChild(el(
-        "span",
-        "stat",
-        photos.length + (photos.length === 1 ? " photo" : " photos")
-      ));
-
+      left.appendChild(el("span", "stat", photos.length + (photos.length === 1 ? " photo" : " photos")));
       head.appendChild(left);
       main.appendChild(head);
 
@@ -401,42 +352,28 @@
       }
 
       var wall = el("div", "wall");
-
       photos.forEach(function (photo) {
         var figure = el("figure", "shot");
         var button = el("button", "tile");
         var image = el("img");
-
         button.type = "button";
         button.setAttribute("aria-label", "Open photo");
         image.loading = "lazy";
         image.src = photo.src;
         image.alt = sectionLabel(photo.section) + " photo";
-
         button.appendChild(image);
-        button.addEventListener("click", function () {
-          openPhoto(photo.id);
-        });
-
+        button.addEventListener("click", function () { openPhoto(photo.id); });
         figure.appendChild(button);
         wall.appendChild(figure);
       });
-
       main.appendChild(wall);
     }
 
-    function renderAll() {
-      renderNav();
-      renderMain();
-    }
+    function renderAll() { renderNav(); renderMain(); }
 
     function openPhoto(id) {
-      var photo = state.photos.find(function (item) {
-        return item.id === id;
-      });
-
+      var photo = state.photos.find(function (item) { return item.id === id; });
       if (!photo) return;
-
       $("v-img").src = photo.src;
       $("v-img").alt = sectionLabel(photo.section) + " photo";
       $("viewer").hidden = false;
@@ -450,28 +387,18 @@
 
     function route() {
       var id = location.hash.slice(1);
-      var validSection = SECTIONS.some(function (section) {
-        return section.id === id;
-      });
-
+      var validSection = SECTIONS.some(function (section) { return section.id === id; });
       state.active = validSection ? id : "projects";
       renderAll();
     }
 
     $("v-close").addEventListener("click", closePhoto);
-
     $("viewer").addEventListener("click", function (event) {
-      if (event.target === $("viewer")) {
-        closePhoto();
-      }
+      if (event.target === $("viewer")) closePhoto();
     });
-
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !$("viewer").hidden) {
-        closePhoto();
-      }
+      if (event.key === "Escape" && !$("viewer").hidden) closePhoto();
     });
-
     window.addEventListener("hashchange", route);
     route();
   </script>
