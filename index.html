@@ -197,18 +197,33 @@
     }
 
     .report-block p {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       color: var(--muted);
     }
 
     .report-block ul {
-      margin: 0;
+      margin: 0 0 16px;
       padding-left: 18px;
       color: var(--muted);
     }
 
     .report-block li + li {
       margin-top: 8px;
+    }
+
+    .report-link {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .report-link:hover {
+      border-color: var(--accent);
     }
 
     .viewer {
@@ -375,15 +390,23 @@
       if (state.active === "report") {
         var reportBlock = el("div", "report-block");
         var h3 = el("h3", null, "Report");
-        var intro = el("p", null, "This section is reserved for the project report or summary.");
+        var intro = el("p", null, "This report section contains my work summary, learning progress, and key project reflections.");
         var list = el("ul");
-        list.appendChild(el("li", null, "Portfolio overview and learning progress."));
-        list.appendChild(el("li", null, "Key achievements and milestones."));
-        list.appendChild(el("li", null, "Reflections and future goals."));
+        list.appendChild(el("li", null, "Portfolio overview and academic progression."));
+        list.appendChild(el("li", null, "Key technical skills and project milestones."));
+        list.appendChild(el("li", null, "Reflection on learning outcomes and future goals."));
+
+        var link = document.createElement("a");
+        link.href = "./FOUR PILLARS OF OBJECT-ORIENTED PROGRAMMING.pptx";
+        link.className = "report-link";
+        link.textContent = "Open Report File";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
 
         reportBlock.appendChild(h3);
         reportBlock.appendChild(intro);
         reportBlock.appendChild(list);
+        reportBlock.appendChild(link);
         main.appendChild(reportBlock);
         return;
       }
