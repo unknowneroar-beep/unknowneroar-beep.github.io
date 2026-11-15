@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>My E-Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+  <style>
+    :root {
+      --bg: #F4F6F8;
+      --surface: #FFFFFF;
+      --ink: #14181F;
+      --muted: #596271;
+      --line: #DCE1E7;
+      --accent: #0B6E69;
+      --accent-ink: #FFFFFF;
+      --accent-soft: #DDF0ED;
+      --overlay: rgba(10, 14, 18, 0.86);
+      --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F1317;
+        --surface: #171C22;
+        --ink: #E8EBEF;
+        --muted: #98A2B0;
+        --line: #262E38;
+        --accent: #4CC2B8;
+        --accent-ink: #06211F;
+        --accent-soft: #15332F;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 28px 16px 48px;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.55 var(--font-body);
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .masthead {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font: 12px var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font: 700 clamp(30px, 6vw, 46px)/1.05 var(--font-display);
+      letter-spacing: -.02em;
+    }
+
+    .bio {
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .btn:hover, .tile:hover {
+      border-color: var(--accent);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .index {
+      position: sticky;
+      top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .index a {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .index a:hover {
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .index a[aria-current="page"] {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .index .n {
+      font: 12px var(--font-mono);
+    }
+
+    main { min-width: 0; }
+
+    .head { margin-bottom: 14px; }
+
+    .head .left {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      margin: 0;
+      font: 600 24px var(--font-display);
+    }
+
+    .stat {
+      color: var(--muted);
+      font: 13px var(--font-mono);
+    }
+
+    .wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .shot {
+      min-width: 0;
+      margin: 0;
+    }
+
+    .tile {
+      display: block;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--accent-soft);
+      cursor: pointer;
+    }
+
+    .tile img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .empty {
+      padding: 36px 20px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: var(--overlay);
+    }
+
+    .viewer[hidden] { display: none; }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      width: min(100%, 880px);
+      max-height: 100%;
+      overflow: auto;
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .panel img {
+      display: block;
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      background: var(--bg);
+    }
+
+    .close-row {
+      padding: 10px 12px;
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      body { padding-block: 20px 36px; }
+
+      .shell {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .index {
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 6px;
+        padding-bottom: 4px;
+      }
+
+      .index a {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .wall {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="eyebrow">E-Portfolio</p>
+      <h1>Timothy B. Umali</h1>
+      <p class="bio">.</p>
+    </header>
+
+    <div class="shell">
+      <nav class="index" id="index" aria-label="Portfolio sections"></nav>
+      <main id="main"></main>
+    </div>
+  </div>
+
+  <div class="viewer" id="viewer" hidden>
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <div class="close-row">
+        <button class="btn" id="v-close" type="button">Close</button>
+      </div>
+      <img id="v-img" alt="">
+    </div>
+  </div>
+
+  <script>
+    var SECTIONS = [
+      { id: "projects", label: "Projects" },
+      { id: "activities", label: "Activities" },
+      { id: "exercises", label: "Exercises" },
+      { id: "exams", label: "Exams" },
+      { id: "quizzes", label: "Quizzes" },
+      { id: "notebooks", label: "Notebooks" },
+      { id: "others", label: "Other's" }
+    ];
+
+    var PHOTOS = [
+      { id: "project-1", section: "projects", src: "images/project1.jpg" },
+
+      { id: "activity-1", section: "activities", src: "ruler/12.jpg" },
+      { id: "activity-2", section: "activities", src: "ruler/13.jpg" },
+
+      { id: "exercise-1", section: "exercises", src: "images/exercise1.jpg" },
+
+      { id: "exam-1", section: "exams", src: "images/exam1.jpg" },
+      { id: "quiz-1", section: "quizzes", src: "images/quiz1.jpg" },
+
+      { id: "notebook-1", section: "notebooks", src: "ruler/1.jpg" },
+      { id: "notebook-2", section: "notebooks", src: "ruler/2.jpg" },
+      { id: "notebook-3", section: "notebooks", src: "ruler/3.jpg" },
+      { id: "notebook-4", section: "notebooks", src: "ruler/4.jpg" },
+      { id: "notebook-5", section: "notebooks", src: "ruler/5.jpg" },
+      { id: "notebook-6", section: "notebooks", src: "ruler/6.jpg" },
+      { id: "notebook-8", section: "notebooks", src: "ruler/8.jpg" },
+      { id: "notebook-9", section: "notebooks", src: "ruler/9.jpg" },
+      { id: "notebook-10", section: "notebooks", src: "ruler/10.jpg" },
+      { id: "notebook-11", section: "notebooks", src: "ruler/11.jpg" },
+      { id: "notebook-15", section: "notebooks", src: "ruler/15.jpg" },
+
+      { id: "other-1", section: "others", src: "ruler/11111.jpeg" }
+    ];
+
+    var state = {
+      photos: PHOTOS,
+      active: "projects"
+    };
+
+    function el(tag, className, text) {
+      var node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text != null) node.textContent = text;
+      return node;
+    }
+
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function sectionLabel(id) {
+      var section = SECTIONS.find(function (item) {
+        return item.id === id;
+      });
+      return section ? section.label : id;
+    }
+
+    function photosInSection(id) {
+      return state.photos.filter(function (photo) {
+        return photo.section === id;
+      });
+    }
+
+    function renderNav() {
+      var nav = $("index");
+      nav.textContent = "";
+
+      SECTIONS.forEach(function (section) {
+        var link = el("a");
+        link.href = "#" + section.id;
+        link.appendChild(el("span", null, section.label));
+        link.appendChild(el("span", "n", String(photosInSection(section.id).length)));
+
+        if (section.id === state.active) {
+          link.setAttribute("aria-current", "page");
+        }
+
+        nav.appendChild(link);
+      });
+    }
+
+    function renderMain() {
+      var main = $("main");
+      main.textContent = "";
+
+      var photos = photosInSection(state.active);
+      var head = el("div", "head");
+      var left = el("div", "left");
+
+      left.appendChild(el("h2", null, sectionLabel(state.active)));
+      left.appendChild(el(
+        "span",
+        "stat",
+        photos.length + (photos.length === 1 ? " photo" : " photos")
+      ));
+
+      head.appendChild(left);
+      main.appendChild(head);
+
+      if (!photos.length) {
+        main.appendChild(el("p", "empty", "No photos in this section yet."));
+        return;
+      }
+
+      var wall = el("div", "wall");
+
+      photos.forEach(function (photo) {
+        var figure = el("figure", "shot");
+        var button = el("button", "tile");
+        var image = el("img");
+
+        button.type = "button";
+        button.setAttribute("aria-label", "Open photo");
+        image.loading = "lazy";
+        image.src = photo.src;
+        image.alt = sectionLabel(photo.section) + " photo";
+
+        button.appendChild(image);
+        button.addEventListener("click", function () {
+          openPhoto(photo.id);
+        });
+
+        figure.appendChild(button);
+        wall.appendChild(figure);
+      });
+
+      main.appendChild(wall);
+    }
+
+    function renderAll() {
+      renderNav();
+      renderMain();
+    }
+
+    function openPhoto(id) {
+      var photo = state.photos.find(function (item) {
+        return item.id === id;
+      });
+
+      if (!photo) return;
+
+      $("v-img").src = photo.src;
+      $("v-img").alt = sectionLabel(photo.section) + " photo";
+      $("viewer").hidden = false;
+      $("v-close").focus();
+    }
+
+    function closePhoto() {
+      $("viewer").hidden = true;
+      $("v-img").removeAttribute("src");
+    }
+
+    function route() {
+      var id = location.hash.slice(1);
+      var validSection = SECTIONS.some(function (section) {
+        return section.id === id;
+      });
+
+      state.active = validSection ? id : "projects";
+      renderAll();
+    }
+
+    $("v-close").addEventListener("click", closePhoto);
+
+    $("viewer").addEventListener("click", function (event) {
+      if (event.target === $("viewer")) {
+        closePhoto();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !$("viewer").hidden) {
+        closePhoto();
+      }
+    });
+
+    window.addEventListener("hashchange", route);
+    route();
+  </script>
+</body>
+</html>
