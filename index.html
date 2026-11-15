@@ -183,6 +183,34 @@
       text-align: center;
     }
 
+    .report-block {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .report-block h3 {
+      margin: 0 0 12px;
+      font: 700 20px var(--font-display);
+    }
+
+    .report-block p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .report-block ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .report-block li + li {
+      margin-top: 8px;
+    }
+
     .viewer {
       position: fixed;
       inset: 0;
@@ -264,6 +292,7 @@
 
   <script>
     var SECTIONS = [
+      { id: "report", label: "Report" },
       { id: "projects", label: "Projects" },
       { id: "activities", label: "Activities" },
       { id: "exercises", label: "Exercises" },
@@ -303,11 +332,10 @@
       { id: "notebook-11", section: "notebooks", src: "./11.jpg" },
       { id: "notebook-14", section: "notebooks", src: "./14.jpg" },
 
-      { id: "other-1", section: "others", src: "./11111.jpeg" },
-      
+      { id: "other-1", section: "others", src: "./11111.jpeg" }
     ];
 
-    var state = { photos: PHOTOS, active: "projects" };
+    var state = { photos: PHOTOS, active: "report" };
 
     function el(tag, className, text) {
       var node = document.createElement(tag);
@@ -343,6 +371,23 @@
     function renderMain() {
       var main = $("main");
       main.textContent = "";
+
+      if (state.active === "report") {
+        var reportBlock = el("div", "report-block");
+        var h3 = el("h3", null, "Report");
+        var intro = el("p", null, "This section is reserved for the project report or summary.");
+        var list = el("ul");
+        list.appendChild(el("li", null, "Portfolio overview and learning progress."));
+        list.appendChild(el("li", null, "Key achievements and milestones."));
+        list.appendChild(el("li", null, "Reflections and future goals."));
+
+        reportBlock.appendChild(h3);
+        reportBlock.appendChild(intro);
+        reportBlock.appendChild(list);
+        main.appendChild(reportBlock);
+        return;
+      }
+
       var photos = photosInSection(state.active);
       var head = el("div", "head");
       var left = el("div", "left");
@@ -393,7 +438,7 @@
     function route() {
       var id = location.hash.slice(1);
       var validSection = SECTIONS.some(function (section) { return section.id === id; });
-      state.active = validSection ? id : "projects";
+      state.active = validSection ? id : "report";
       renderAll();
     }
 
