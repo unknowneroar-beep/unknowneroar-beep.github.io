@@ -11,15 +11,18 @@
 
   <style>
     :root {
-      --bg: #F4F6F8;
-      --surface: #FFFFFF;
-      --ink: #14181F;
-      --muted: #596271;
-      --line: #DCE1E7;
-      --accent: #0B6E69;
-      --accent-ink: #FFFFFF;
-      --accent-soft: #DDF0ED;
-      --overlay: rgba(10, 14, 18, 0.86);
+      --bg: #eef3f7;
+      --surface: #ffffff;
+      --surface-alt: #f5f7fa;
+      --ink: #17212b;
+      --muted: #516074;
+      --line: #dfe6ee;
+      --accent: #0f766e;
+      --accent-strong: #0b5f5b;
+      --accent-ink: #ffffff;
+      --accent-soft: #dff7f3;
+      --overlay: rgba(17, 24, 39, 0.74);
+      --shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
       --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
       --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -27,30 +30,40 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0F1317;
-        --surface: #171C22;
-        --ink: #E8EBEF;
-        --muted: #98A2B0;
-        --line: #262E38;
-        --accent: #4CC2B8;
-        --accent-ink: #06211F;
-        --accent-soft: #15332F;
+        --bg: #0f1419;
+        --surface: #171d24;
+        --surface-alt: #121a22;
+        --ink: #edf2f7;
+        --muted: #a3b1c2;
+        --line: #2a3746;
+        --accent: #57cab9;
+        --accent-strong: #2ac0b0;
+        --accent-ink: #062c29;
+        --accent-soft: #16312f;
+        --overlay: rgba(7, 12, 17, 0.84);
+        --shadow: 0 18px 35px rgba(2, 6, 23, 0.45);
         color-scheme: dark;
       }
     }
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 28px 16px 48px;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        var(--bg);
       color: var(--ink);
       font: 15px/1.55 var(--font-body);
     }
 
     .wrap {
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -58,28 +71,32 @@
     }
 
     .masthead {
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
+      padding: 28px 24px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.3)), var(--surface);
+      box-shadow: var(--shadow);
     }
 
     .eyebrow {
       margin: 0 0 8px;
       color: var(--muted);
       font: 12px var(--font-mono);
-      letter-spacing: .08em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
     h1 {
       margin: 0 0 10px;
-      font: 700 clamp(30px, 6vw, 46px)/1.05 var(--font-display);
-      letter-spacing: -.02em;
+      font: 700 clamp(30px, 6vw, 52px)/1.02 var(--font-display);
+      letter-spacing: -.04em;
     }
 
     .bio {
       margin: 0;
-      max-width: 56ch;
+      max-width: 62ch;
       color: var(--muted);
+      font-size: 1.02rem;
     }
 
     button, a { font: inherit; }
@@ -90,20 +107,21 @@
     }
 
     .btn {
-      padding: 8px 14px;
+      padding: 9px 14px;
       border: 1px solid var(--line);
-      border-radius: 6px;
+      border-radius: 8px;
       background: var(--surface);
       color: var(--ink);
       cursor: pointer;
+      transition: all .2s ease;
     }
 
     .btn:hover, .tile:hover { border-color: var(--accent); }
 
     .shell {
       display: grid;
-      grid-template-columns: 200px minmax(0, 1fr);
-      gap: 36px;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 32px;
       align-items: start;
     }
 
@@ -112,30 +130,44 @@
       top: 24px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 6px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
 
     .index a {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      padding: 9px 12px;
-      border-radius: 6px;
+      padding: 10px 12px;
+      border-radius: 10px;
       color: var(--muted);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      transition: all .2s ease;
     }
 
-    .index a:hover { background: var(--surface); color: var(--ink); }
+    .index a:hover {
+      background: var(--surface-alt);
+      color: var(--ink);
+    }
 
     .index a[aria-current="page"] {
-      background: var(--accent);
+      background: linear-gradient(180deg, var(--accent), var(--accent-strong));
       color: var(--accent-ink);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
     }
 
-    .index .n { font: 12px var(--font-mono); }
+    .index .n {
+      font: 12px var(--font-mono);
+      opacity: .9;
+    }
+
     main { min-width: 0; }
-    .head { margin-bottom: 14px; }
+    .head { margin-bottom: 18px; }
 
     .head .left {
       display: flex;
@@ -144,8 +176,16 @@
       flex-wrap: wrap;
     }
 
-    h2 { margin: 0; font: 600 24px var(--font-display); }
-    .stat { color: var(--muted); font: 13px var(--font-mono); }
+    h2 {
+      margin: 0;
+      font: 600 24px var(--font-display);
+      letter-spacing: -.03em;
+    }
+
+    .stat {
+      color: var(--muted);
+      font: 13px var(--font-mono);
+    }
 
     .wall {
       display: grid;
@@ -162,9 +202,15 @@
       overflow: hidden;
       aspect-ratio: 4 / 3;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 12px;
       background: var(--accent-soft);
       cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-2px);
     }
 
     .tile img {
@@ -177,32 +223,34 @@
     .empty {
       padding: 36px 20px;
       border: 1px dashed var(--line);
-      border-radius: 8px;
+      border-radius: 12px;
       background: var(--surface);
       color: var(--muted);
       text-align: center;
     }
 
     .report-block {
-      padding: 22px;
+      padding: 24px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 18px;
       background: var(--surface);
       color: var(--ink);
+      box-shadow: var(--shadow);
     }
 
     .report-block h3 {
-      margin: 0 0 12px;
-      font: 700 20px var(--font-display);
+      margin: 0 0 14px;
+      font: 700 26px var(--font-display);
+      letter-spacing: -.03em;
     }
 
     .report-block p {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: var(--muted);
     }
 
     .report-block ul {
-      margin: 0 0 16px;
+      margin: 0 0 18px;
       padding-left: 18px;
       color: var(--muted);
     }
@@ -211,19 +259,40 @@
       margin-top: 8px;
     }
 
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skills li {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font: 12px var(--font-mono);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
     .report-link {
       display: inline-block;
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 11px 15px;
+      border-radius: 10px;
       border: 1px solid var(--line);
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: linear-gradient(180deg, var(--accent-soft), rgba(223,247,243,0.75));
+      color: var(--accent-strong);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+      transition: all .2s ease;
     }
 
     .report-link:hover {
       border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .viewer {
@@ -242,11 +311,12 @@
     .panel {
       display: flex;
       flex-direction: column;
-      width: min(100%, 880px);
+      width: min(100%, 900px);
       max-height: 100%;
       overflow: auto;
-      border-radius: 10px;
+      border-radius: 16px;
       background: var(--surface);
+      box-shadow: var(--shadow);
     }
 
     .panel img {
@@ -257,7 +327,11 @@
       background: var(--bg);
     }
 
-    .close-row { padding: 10px 12px; text-align: right; }
+    .close-row {
+      padding: 10px 12px;
+      text-align: right;
+      border-bottom: 1px solid var(--line);
+    }
 
     @media (max-width: 760px) {
       body { padding-block: 20px 36px; }
@@ -278,6 +352,8 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 10px;
       }
+      .masthead { padding: 22px 18px 16px; }
+      .report-block { padding: 18px; }
     }
   </style>
 </head>
@@ -287,7 +363,7 @@
     <header class="masthead">
       <p class="eyebrow">E-Portfolio</p>
       <h1>Timothy B. Umali</h1>
-      <p class="bio">.</p>
+      <p class="bio">Student-focused developer portfolio showcasing projects, learning progress, reflections, and milestones across coursework, activities, and academic work.</p>
     </header>
 
     <div class="shell">
@@ -316,7 +392,6 @@
       { id: "others", label: "Other's" }
     ];
 
-    // Image files are in the repository root, not in subfolders.
     var PHOTOS = [
       { id: "project-1", section: "projects", src: "./Screenshot 2026-11-15 134745.png" },
 
@@ -387,12 +462,17 @@
 
       if (state.active === "report") {
         var reportBlock = el("div", "report-block");
-        var h3 = el("h3", null, "Report");
-        var intro = el("p", null, "This report section contains my work summary, learning progress, and key project reflections.");
+        var h3 = el("h3", null, "Portfolio Report");
+        var intro = el("p", null, "This portfolio highlights my academic development, project work, and practical learning journey throughout my studies.");
         var list = el("ul");
         list.appendChild(el("li", null, "Portfolio overview and academic progression."));
-        list.appendChild(el("li", null, "Key technical skills and project milestones."));
+        list.appendChild(el("li", null, "Technical skills and project milestones."));
         list.appendChild(el("li", null, "Reflection on learning outcomes and future goals."));
+
+        var skills = el("ul", "skills");
+        ["Programming", "Design", "Problem Solving", "Research", "Collaboration", "Reflection"].forEach(function (skill) {
+          skills.appendChild(el("li", null, skill));
+        });
 
         var link = document.createElement("a");
         link.href = "./FOUR PILLARS OF OBJECT-ORIENTED PROGRAMMING.pptx";
@@ -403,6 +483,7 @@
 
         reportBlock.appendChild(h3);
         reportBlock.appendChild(intro);
+        reportBlock.appendChild(skills);
         reportBlock.appendChild(list);
         reportBlock.appendChild(link);
         main.appendChild(reportBlock);
