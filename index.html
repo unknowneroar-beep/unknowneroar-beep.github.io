@@ -47,336 +47,81 @@
     }
 
     * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       padding: 28px 16px 48px;
-      background:
-        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
-        var(--bg);
+      background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%), var(--bg);
       color: var(--ink);
       font: 15px/1.55 var(--font-body);
     }
 
-    .wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .masthead {
-      padding: 28px 24px 20px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.3)), var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font: 12px var(--font-mono);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font: 700 clamp(30px, 6vw, 52px)/1.02 var(--font-display);
-      letter-spacing: -.04em;
-    }
-
-    .bio {
-      margin: 0;
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
+    .wrap { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+    .masthead { padding: 28px 24px 20px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.3)), var(--surface); box-shadow: var(--shadow); }
+    .eyebrow { margin: 0 0 8px; color: var(--muted); font: 12px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 0 0 10px; font: 700 clamp(30px, 6vw, 52px)/1.02 var(--font-display); letter-spacing: -.04em; }
+    .bio { margin: 0; max-width: 62ch; color: var(--muted); font-size: 1.02rem; }
     button, a { font: inherit; }
-
-    button:focus-visible, a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .btn {
-      padding: 9px 14px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--ink);
-      cursor: pointer;
-      transition: all .2s ease;
-    }
-
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .btn { padding: 9px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); cursor: pointer; transition: all .2s ease; }
     .btn:hover, .tile:hover { border-color: var(--accent); }
 
-    .shell {
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 32px;
-      align-items: start;
-    }
-
-    .index {
-      position: sticky;
-      top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .index a {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all .2s ease;
-    }
-
-    .index a:hover {
-      background: var(--surface-alt);
-      color: var(--ink);
-    }
-
-    .index a[aria-current="page"] {
-      background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-      color: var(--accent-ink);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
-    }
-
-    .index .n {
-      font: 12px var(--font-mono);
-      opacity: .9;
-    }
+    .shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; align-items: start; }
+    .index { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+    .index a { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; color: var(--muted); text-decoration: none; font-weight: 600; transition: all .2s ease; }
+    .index a:hover { background: var(--surface-alt); color: var(--ink); }
+    .index a[aria-current="page"] { background: linear-gradient(180deg, var(--accent), var(--accent-strong)); color: var(--accent-ink); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22); }
+    .index .n { font: 12px var(--font-mono); opacity: .9; }
 
     main { min-width: 0; }
     .head { margin-bottom: 18px; }
+    .head .left { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    h2 { margin: 0; font: 600 24px var(--font-display); letter-spacing: -.03em; }
+    .stat { color: var(--muted); font: 13px var(--font-mono); }
 
-    .head .left {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    h2 {
-      margin: 0;
-      font: 600 24px var(--font-display);
-      letter-spacing: -.03em;
-    }
-
-    .stat {
-      color: var(--muted);
-      font: 13px var(--font-mono);
-    }
-
-    .wall {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 14px;
-    }
-
+    .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
     .shot { min-width: 0; margin: 0; }
+    .tile { display: block; width: 100%; padding: 0; overflow: hidden; aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft); cursor: pointer; box-shadow: var(--shadow); transition: transform .2s ease, border-color .2s ease; }
+    .tile:hover { transform: translateY(-2px); }
+    .tile img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .empty { padding: 36px 20px; border: 1px dashed var(--line); border-radius: 12px; background: var(--surface); color: var(--muted); text-align: center; }
 
-    .tile {
-      display: block;
-      width: 100%;
-      padding: 0;
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--accent-soft);
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform .2s ease, border-color .2s ease;
-    }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+    .project-card .tile { border: 0; border-radius: 0; box-shadow: none; aspect-ratio: 16 / 10; }
+    .project-info { padding: 16px; }
+    .project-info h3 { margin: 0 0 6px; font: 700 18px var(--font-display); }
+    .project-info p { margin: 0; color: var(--muted); }
 
-    .tile:hover {
-      transform: translateY(-2px);
-    }
+    .report-block { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+    .report-block h3 { margin: 0 0 14px; font: 700 26px var(--font-display); letter-spacing: -.03em; }
+    .report-block p { margin: 0 0 14px; color: var(--muted); }
+    .report-block ul { margin: 0 0 18px; padding-left: 18px; color: var(--muted); }
+    .report-block li + li { margin-top: 8px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+    .skills li { padding: 7px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-strong); font: 12px var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+    .report-link { display: inline-block; padding: 11px 15px; border-radius: 10px; border: 1px solid var(--line); background: linear-gradient(180deg, var(--accent-soft), rgba(223,247,243,0.75)); color: var(--accent-strong); text-decoration: none; font-weight: 700; transition: all .2s ease; }
+    .report-link:hover { border-color: var(--accent); transform: translateY(-1px); }
 
-    .tile img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .video-block { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+    .video-block h3 { margin: 0 0 14px; font: 700 26px var(--font-display); letter-spacing: -.03em; }
+    .video-frame { width: 100%; min-height: 340px; border: 0; border-radius: 12px; background: #0b1220; }
 
-    .empty {
-      padding: 36px 20px;
-      border: 1px dashed var(--line);
-      border-radius: 12px;
-      background: var(--surface);
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .report-block {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: var(--shadow);
-    }
-
-    .report-block h3 {
-      margin: 0 0 14px;
-      font: 700 26px var(--font-display);
-      letter-spacing: -.03em;
-    }
-
-    .report-block p {
-      margin: 0 0 14px;
-      color: var(--muted);
-    }
-
-    .report-block ul {
-      margin: 0 0 18px;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .report-block li + li {
-      margin-top: 8px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 18px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .skills li {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      font: 12px var(--font-mono);
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .report-link {
-      display: inline-block;
-      padding: 11px 15px;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--accent-soft), rgba(223,247,243,0.75));
-      color: var(--accent-strong);
-      text-decoration: none;
-      font-weight: 700;
-      transition: all .2s ease;
-    }
-
-    .report-link:hover {
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .video-block {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .video-block h3 {
-      margin: 0 0 14px;
-      font: 700 26px var(--font-display);
-      letter-spacing: -.03em;
-    }
-
-    .video-frame {
-      width: 100%;
-      min-height: 340px;
-      border: 0;
-      border-radius: 12px;
-      background: #0b1220;
-    }
-
-    .viewer {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      background: var(--overlay);
-    }
-
+    .viewer { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 16px; background: var(--overlay); }
     .viewer[hidden] { display: none; }
-
-    .panel {
-      display: flex;
-      flex-direction: column;
-      width: min(100%, 900px);
-      max-height: 100%;
-      overflow: auto;
-      border-radius: 16px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .panel img {
-      display: block;
-      width: 100%;
-      max-height: 75vh;
-      object-fit: contain;
-      background: var(--bg);
-    }
-
-    .close-row {
-      padding: 10px 12px;
-      text-align: right;
-      border-bottom: 1px solid var(--line);
-    }
+    .panel { display: flex; flex-direction: column; width: min(100%, 900px); max-height: 100%; overflow: auto; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+    .panel img { display: block; width: 100%; max-height: 75vh; object-fit: contain; background: var(--bg); }
+    .close-row { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--line); }
 
     @media (max-width: 760px) {
       body { padding-block: 20px 36px; }
       .shell { grid-template-columns: 1fr; gap: 20px; }
-      .index {
-        position: static;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 6px;
-        padding-bottom: 4px;
-      }
-      .index a {
-        flex: 0 0 auto;
-        border: 1px solid var(--line);
-        background: var(--surface);
-      }
-      .wall {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 10px;
-      }
+      .index { position: static; flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
+      .index a { flex: 0 0 auto; border: 1px solid var(--line); background: var(--surface); }
+      .wall { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+      .project-grid { grid-template-columns: 1fr; }
       .masthead { padding: 22px 18px 16px; }
-      .report-block { padding: 18px; }
-      .video-block { padding: 18px; }
+      .report-block, .video-block { padding: 18px; }
     }
   </style>
 </head>
@@ -397,17 +142,15 @@
 
   <div class="viewer" id="viewer" hidden>
     <div class="panel" role="dialog" aria-modal="true" aria-label="Photo viewer">
-      <div class="close-row">
-        <button class="btn" id="v-close" type="button">Close</button>
-      </div>
+      <div class="close-row"><button class="btn" id="v-close" type="button">Close</button></div>
       <img id="v-img" alt="">
     </div>
   </div>
 
   <script>
     var SECTIONS = [
-      { id: "report", label: "Report" },
       { id: "projects", label: "Projects" },
+      { id: "report", label: "Report" },
       { id: "activities", label: "Activities" },
       { id: "exercises", label: "Exercises" },
       { id: "exams", label: "Exams" },
@@ -416,15 +159,16 @@
       { id: "testimonial-video", label: "Testimonial Video" }
     ];
 
-    var PHOTOS = [
-      { id: "project-1", section: "projects", src: "./Screenshot 2026-11-15 134745.png" },
-      { id: "project-2", section: "projects", src: "./Screenshot 2026-11-16 220010.png" },
-      { id: "project-3", section: "projects", src: "./Screenshot 2026-11-16 220015.png" },
-      { id: "project-4", section: "projects", src: "./Screenshot 2026-11-16 220022.png" },
+    var PROJECTS = [
+      { id: "project-1", title: "Project 1", description: "Academic project showcasing my completed work.", src: "./Screenshot 2026-11-15 134745.png" },
+      { id: "project-2", title: "Project 2", description: "Interactive project featuring technical implementation.", src: "./Screenshot 2026-11-16 220010.png" },
+      { id: "project-3", title: "Project 3", description: "Coursework project demonstrating design and programming skills.", src: "./Screenshot 2026-11-16 220015.png" },
+      { id: "project-4", title: "Project 4", description: "Final project highlighting problem-solving and creativity.", src: "./Screenshot 2026-11-16 220022.png" }
+    ];
 
+    var PHOTOS = [
       { id: "activity-1", section: "activities", src: "./12.jpg" },
       { id: "activity-2", section: "activities", src: "./13.jpg" },
-
       { id: "exercise-1", section: "exercises", src: "./22.png" },
       { id: "exercise-2", section: "exercises", src: "./222.png" },
       { id: "exercise-3", section: "exercises", src: "./2222.png" },
@@ -451,9 +195,7 @@
       { id: "exercise-24", section: "exercises", src: "./Screenshot 2026-11-16 215252.png" },
       { id: "exercise-25", section: "exercises", src: "./Screenshot 2026-11-16 215259.png" },
       { id: "exercise-26", section: "exercises", src: "./Screenshot 2026-11-16 215308.png" },
-
       { id: "exam-1", section: "exams", src: "./Screenshot 2026-11-15 135405.png" },
-
       { id: "notebook-1", section: "notebooks", src: "./1.jpg" },
       { id: "notebook-2", section: "notebooks", src: "./2.jpg" },
       { id: "notebook-3", section: "notebooks", src: "./3.jpg" },
@@ -466,11 +208,10 @@
       { id: "notebook-10", section: "notebooks", src: "./10.jpg" },
       { id: "notebook-11", section: "notebooks", src: "./11.jpg" },
       { id: "notebook-14", section: "notebooks", src: "./14.jpg" },
-
       { id: "other-1", section: "others", src: "./11111.jpeg" }
     ];
 
-    var state = { photos: PHOTOS, active: "report" };
+    var state = { active: "projects" };
 
     function el(tag, className, text) {
       var node = document.createElement(tag);
@@ -486,8 +227,8 @@
       return section ? section.label : id;
     }
 
-    function photosInSection(id) {
-      return state.photos.filter(function (photo) { return photo.section === id; });
+    function countForSection(id) {
+      return id === "projects" ? PROJECTS.length : PHOTOS.filter(function (photo) { return photo.section === id; }).length;
     }
 
     function renderNav() {
@@ -497,41 +238,68 @@
         var link = el("a");
         link.href = "#" + section.id;
         link.appendChild(el("span", null, section.label));
-        link.appendChild(el("span", "n", String(photosInSection(section.id).length)));
+        link.appendChild(el("span", "n", String(countForSection(section.id))));
         if (section.id === state.active) link.setAttribute("aria-current", "page");
         nav.appendChild(link);
       });
+    }
+
+    function renderProjects() {
+      var main = $("main");
+      main.textContent = "";
+      var head = el("div", "head");
+      var left = el("div", "left");
+      left.appendChild(el("h2", null, "Projects"));
+      left.appendChild(el("span", "stat", PROJECTS.length + " projects"));
+      head.appendChild(left);
+      main.appendChild(head);
+
+      var grid = el("div", "project-grid");
+      PROJECTS.forEach(function (project) {
+        var card = el("article", "project-card");
+        var button = el("button", "tile");
+        button.type = "button";
+        button.setAttribute("aria-label", "Open " + project.title);
+        var image = el("img");
+        image.loading = "lazy";
+        image.src = project.src;
+        image.alt = project.title;
+        button.appendChild(image);
+        button.addEventListener("click", function () { openPhoto(project.src, project.title); });
+
+        var info = el("div", "project-info");
+        info.appendChild(el("h3", null, project.title));
+        info.appendChild(el("p", null, project.description));
+
+        card.appendChild(button);
+        card.appendChild(info);
+        grid.appendChild(card);
+      });
+      main.appendChild(grid);
     }
 
     function renderMain() {
       var main = $("main");
       main.textContent = "";
 
+      if (state.active === "projects") { renderProjects(); return; }
+
       if (state.active === "report") {
         var reportBlock = el("div", "report-block");
-        var h3 = el("h3", null, "Portfolio Report");
-        var intro = el("p", null, "This portfolio highlights my academic development, project work, and practical learning journey throughout my studies.");
-        var list = el("ul");
-        list.appendChild(el("li", null, "Portfolio overview and academic progression."));
-        list.appendChild(el("li", null, "Technical skills and project milestones."));
-        list.appendChild(el("li", null, "Reflection on learning outcomes and future goals."));
-
+        reportBlock.appendChild(el("h3", null, "Portfolio Report"));
+        reportBlock.appendChild(el("p", null, "This portfolio highlights my academic development, project work, and practical learning journey throughout my studies."));
         var skills = el("ul", "skills");
-        ["Programming", "Design", "Problem Solving", "Research", "Collaboration", "Reflection"].forEach(function (skill) {
-          skills.appendChild(el("li", null, skill));
-        });
-
+        ["Programming", "Design", "Problem Solving", "Research", "Collaboration", "Reflection"].forEach(function (skill) { skills.appendChild(el("li", null, skill)); });
+        reportBlock.appendChild(skills);
+        var list = el("ul");
+        ["Portfolio overview and academic progression.", "Technical skills and project milestones.", "Reflection on learning outcomes and future goals."].forEach(function (item) { list.appendChild(el("li", null, item)); });
+        reportBlock.appendChild(list);
         var link = document.createElement("a");
         link.href = "./FOUR PILLARS OF OBJECT-ORIENTED PROGRAMMING.pptx";
         link.className = "report-link";
         link.textContent = "Open Report File";
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-
-        reportBlock.appendChild(h3);
-        reportBlock.appendChild(intro);
-        reportBlock.appendChild(skills);
-        reportBlock.appendChild(list);
         reportBlock.appendChild(link);
         main.appendChild(reportBlock);
         return;
@@ -539,25 +307,22 @@
 
       if (state.active === "testimonial-video") {
         var videoBlock = el("div", "video-block");
-        var videoTitle = el("h3", null, "Testimonial Video");
+        videoBlock.appendChild(el("h3", null, "Testimonial Video"));
         var video = document.createElement("video");
         video.className = "video-frame";
         video.controls = true;
         video.preload = "metadata";
-
         var source = document.createElement("source");
         source.src = "./Testimonial Vid.mp4";
         source.type = "video/mp4";
-
         video.appendChild(source);
         video.appendChild(document.createTextNode("Your browser does not support the video tag."));
-        videoBlock.appendChild(videoTitle);
         videoBlock.appendChild(video);
         main.appendChild(videoBlock);
         return;
       }
 
-      var photos = photosInSection(state.active);
+      var photos = PHOTOS.filter(function (photo) { return photo.section === state.active; });
       var head = el("div", "head");
       var left = el("div", "left");
       left.appendChild(el("h2", null, sectionLabel(state.active)));
@@ -565,10 +330,7 @@
       head.appendChild(left);
       main.appendChild(head);
 
-      if (!photos.length) {
-        main.appendChild(el("p", "empty", "No photos in this section yet."));
-        return;
-      }
+      if (!photos.length) { main.appendChild(el("p", "empty", "No photos in this section yet.")); return; }
 
       var wall = el("div", "wall");
       photos.forEach(function (photo) {
@@ -581,7 +343,7 @@
         image.src = photo.src;
         image.alt = sectionLabel(photo.section) + " photo";
         button.appendChild(image);
-        button.addEventListener("click", function () { openPhoto(photo.id); });
+        button.addEventListener("click", function () { openPhoto(photo.src, sectionLabel(photo.section) + " photo"); });
         figure.appendChild(button);
         wall.appendChild(figure);
       });
@@ -590,11 +352,9 @@
 
     function renderAll() { renderNav(); renderMain(); }
 
-    function openPhoto(id) {
-      var photo = state.photos.find(function (item) { return item.id === id; });
-      if (!photo) return;
-      $("v-img").src = photo.src;
-      $("v-img").alt = sectionLabel(photo.section) + " photo";
+    function openPhoto(src, alt) {
+      $("v-img").src = src;
+      $("v-img").alt = alt;
       $("viewer").hidden = false;
       $("v-close").focus();
     }
@@ -607,17 +367,13 @@
     function route() {
       var id = location.hash.slice(1);
       var validSection = SECTIONS.some(function (section) { return section.id === id; });
-      state.active = validSection ? id : "report";
+      state.active = validSection ? id : "projects";
       renderAll();
     }
 
     $("v-close").addEventListener("click", closePhoto);
-    $("viewer").addEventListener("click", function (event) {
-      if (event.target === $("viewer")) closePhoto();
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && !$("viewer").hidden) closePhoto();
-    });
+    $("viewer").addEventListener("click", function (event) { if (event.target === $("viewer")) closePhoto(); });
+    document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !$("viewer").hidden) closePhoto(); });
     window.addEventListener("hashchange", route);
     route();
   </script>
